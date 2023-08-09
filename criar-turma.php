@@ -16,14 +16,14 @@ $connection->beginTransaction();
 try {
     $aStudent = new Student(
         null,
-        'Nico Steppat',
+        'Dandara Steppat',
         new DateTimeImmutable('1985-05-01'),
     );
     $studentRepository->save($aStudent);
 
     $anotherStudent = new Student(
         null,
-        'Sergio Lopes',
+        'Eliana Lopes',
         new DateTimeImmutable('1985-05-01'),
     );
     $studentRepository->save($anotherStudent);
