@@ -5,6 +5,7 @@ namespace App\Infrastructure\Repository;
 use App\Domain\Model\Phone;
 use App\Domain\Model\Student;
 use App\Domain\Repository\StudentRepository;
+use DateTimeInterface;
 use PDO;
 
 class PdoStudentRepository implements StudentRepository
@@ -24,7 +25,7 @@ class PdoStudentRepository implements StudentRepository
         return $this->hydrateStudentList($stmt);
     }
 
-    public function studentsBirthAt(\DateTimeInterface $birthDate): array
+    public function studentsBirthAt(DateTimeInterface $birthDate): array
     {
         $sqlQuery = 'SELECT * FROM students WHERE birth_date = ?;';
         $stmt = $this->connection->prepare($sqlQuery);
@@ -117,7 +118,7 @@ class PdoStudentRepository implements StudentRepository
                     new \DateTimeImmutable($row['birth_date'])
                 );
             }
-            
+
             $phone = new Phone($row['phone_id'], $row['area_code'], $row['number']);
             $studentList[$row['id']]->addPhone($phone);
         }
